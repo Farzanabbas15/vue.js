@@ -17,7 +17,12 @@ const store = createStore({
     action:{
         //action to be performed
         setToken(context,payLoad){
+            localStorage.setItem('token',payload)
             context.commit('UPDATE_TOKEN',payload)
+        },
+        removeToken(context){
+            localStorage.removeItem('token');
+            context.commit('UPDATE_TOKEN', 0);
         }
     },
 

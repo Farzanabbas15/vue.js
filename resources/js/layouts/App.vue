@@ -4,16 +4,16 @@ import store from '../store';
 
   <nav class="navbar navbar-default">
 
-    <router-link class="navbar-band" :to="{name : 'Home'}">Home {{ $store.getters.token }}</router-link>
+    <router-link class="navbar-band" :to="{name : 'Home'}">Home</router-link>
     <ul class="navbar-nav">
       <li class="nav-item">
-        <router-link class="text-white" to="{name : 'Login' }">Login</router-link>
+        <router-link class="text-white" to="{name : 'Login' }" v-if="$store.getters.getToken == 0">Login</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="text-white" to="{name : 'Register' }">Register</router-link>
+        <router-link class="text-white" to="{name : 'Register' }" v-if="$store.getters.getToken == 0">Register</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="text-white" to="{name : 'Dashboard' }">Dashboard</router-link>
+        <router-link class="text-white" to="{name : 'Dashboard' }" v-if="$store.getters.getToken != 0">Dashboard</router-link>
       </li>
 
     </ul>

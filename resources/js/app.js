@@ -1,8 +1,8 @@
 import './bootstrap';
 
-import { createApp } from 'vue'
-import router from './router.js'
-import store from './store/index.js'
+import { createApp } from 'vue';
+import router from './router.js';
+import store from './store';
 
 
 import App from './layouts/App.vue'

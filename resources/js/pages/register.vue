@@ -32,12 +32,13 @@
 </template>
 <script>
     import { reactive,ref  } from 'vue'
-    import { reactive } from 'vue'
     import { useRouter } from "vue-router"
+    import { useStore } from 'vuex'
 
     export default{
         setup(){
             const router = useRouter()
+            const store = useStore()
 
             let form = reactive({
                 name :'',
@@ -49,10 +50,10 @@
             const register = async() =>{
                 await axios.post('/api/register,',form).then(res=>{
                   if (res.data.sucess) {
-                     localStorage.setItem('token',res.data.token)
-                     router.push({name:'Dashboard'})
+                    store.dispatch('setToken',res.data.data.token)
+                    router.push({name:'Dashboard'})
                   }
-                  }) .catch(e=>{
+                }) .catch(e=>{
                     errors.value = e.response.data.message
                 })
             }

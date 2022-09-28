@@ -3,7 +3,7 @@ import home from './pages/home.vue';
 import login from './pages/login.vue';
 import register from './pages/register.vue';
 import dashboard from './pages/dashboard.vue';
-
+import store from './store';
 const routes = [
     {
     path : '/',
@@ -42,10 +42,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to,from)=>{
-    if(to.meta.requiresAuth && !localStorage.getItem('token')){
+    if(to.meta.requiresAuth && store.getters.getToken == 0){
         return{ name:'login'}
     }
-    if(to.meta.requiresAth == false && localStorage.getItem('token')){
+    if(to.meta.requiresAth == false && store.getters.getToken != 0){
         return { name :'Deshboard'}
     }
 })
